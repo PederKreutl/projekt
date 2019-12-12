@@ -1,0 +1,53 @@
+.TH d6r 1
+
+.SH NÁZOV
+d6r \- DHCPv6 relay agent s podporou vloženia MAC adresy
+
+.SH POUŽITIE
+.B d6r
+[\fB\-l]
+[\fB\-d]
+[\fB\-i \fIINTERFACE\fR]
+\-s \fISERVER\fR
+
+.SH POPIS
+.B d6r
+je relay, ktorého chovanie je definované podľa RFC 8145.
+Program umožnuje vkladať do DHCPv6 správ MAC adresu klienta, tak ako definuje RFC 6939.
+Informácie loguje pomocou protokolu syslog. 
+
+.SH MOŽNOSTI POUŽITIA
+.TP
+.BR \-s " " \fISERVER\fR
+DHCPv6 server, na ktorý je poslaný upravený DHCPv6 paket.
+.TP
+.BR \fB\-i " " \fIINTERFACE\fR
+Rozhranie, na ktorom relay naslúcha. 
+Všetky sieťové rozhrania, ak parameter nie je definovaný.
+.TP
+.BR -l 
+Zapnutie logovania pomocou syslog správ.
+.TP
+.BR -d 
+Zapnutie debug výpisu na štandardný výstup.
+
+.SH UKÁŽKA VÝSTUPU
+.TP
+$ d6r \-s 2001:db8::1111 \-d
+
+ 2001:db8:a::/56,aa:bb:cc:dd:ee:ff
+ 2001:db8:b::1,aa:bb:cc:dd:ff:ff
+
+.SH ZÁVISLOSTI
+.TP
+Knižnica BOOST - Na spracovanie argumentov bola využitá knižnica BOOST.
+.TP
+Knižnica pcap - Na zachytávanie packetov
+
+.SH ODKAZY
+.TP
+RFC 8145, RFC 6939.
+
+.SH AUTOR
+.TP
+Peter Krutý <xkruty00@stud.fit.vutbr.cz>
